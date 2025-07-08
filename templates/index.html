@@ -2,28 +2,27 @@
 <html lang="zxx">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta name="keyword" content="" />
-    <meta name="author" content="WRAPCODERS" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="author" content="">
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Fundsroom || Dashboard</title>
+    <title>FundsWeb || Login Page</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
-    <link rel="shortcut icon" type="image/x-icon" href="./../assets/images/FundsAuditLogo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="./../assets/images/favicon.svg">
     <!--! END: Favicon-->
     <!--! BEGIN: Bootstrap CSS-->
-    <link rel="stylesheet" type="text/css" href="./../assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./../assets/css/bootstrap.min.css">
     <!--! END: Bootstrap CSS-->
     <!--! BEGIN: Vendors CSS-->
-    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/vendors.min.css" />
-    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/daterangepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/vendors.min.css">
     <!--! END: Vendors CSS-->
     <!--! BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="./../assets/css/theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="./../assets/css/theme.min.css">
     <!--! END: Custom CSS-->
     <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
     <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
@@ -35,599 +34,185 @@
 
 <body>
     <!--! ================================================================ !-->
-    <!--! [Start] Navigation Manu !-->
-    <!--! ================================================================ !-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <nav class="nxl-navigation">
-        <div class="navbar-wrapper">
-            <div class="m-header">
-                <a href="index.html" class="b-brand">
-                    <img src="/assets/img/logo/Fundsweb1.png" alt="" class="logo logo-lg" />
-                    <img src="./../assets/images/FundsAuditLogo.png" alt="" class="logo logo-sm" />
-                </a>
-            </div>
-            <div class="navbar-content">
-                <ul class="nxl-navbar">
-                    <li class="nxl-item nxl-caption">
-                        <label>Navigation</label>
-                    </li>
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
-                            <span class="nxl-mtext">Dashboard</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
-                        </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="index.html">Onboarding Details</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="payment-details.html">Payment Details</a>
-                            </li>
-                            <li class="nxl-item"><a class="nxl-link" href="website-creation-details.html">Website
-                                    Creation Details</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="user-track.html">User Status Tracking</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="/admin/my-websites.html" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-user"></i></span>
-                            <span class="nxl-mtext">My-websites</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
-                        </a>
-                    </li>
-                    <!-- Admin Page Link (Hidden by Default) -->
-                    <!-- <li class="nxl-item nxl-hasmenu" id="adminPageLink" style="display: none;">
-                        <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-settings"></i></span>
-                            <span class="nxl-mtext">Admin Page</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
-                        </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="admin.html">Dashboard Analysis - Edit</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="business-analysis-edit.html">Business Analysis - Edit</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="analysis-edit.html">Performance Analysis - Edit</a></li>
-                        </ul>
-                    </li> -->
-                </ul>
-
-                <div class="card text-center">
-                    <div class="card-body">
-                        <i class="feather-briefcase fs-4 text-dark"></i>
-                        <h6 class="mt-4 text-dark fw-bolder">Welcome to FundsRoom</h6>
-                        <p class="fs-11 my-3 text-dark">
-                            FundsRoom is your trusted financial partner, offering seamless solutions for managing
-                            investments, loans, and business funds with ease.
-                        </p>
-                        <!-- <a href="https://www.fundsroom.com/" class="btn btn-primary text-dark w-100" style="margin-bottom: 10%;">Fundsroom</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.fundsroom.fundsaudit&hl=en_IN" class="btn btn-success text-light w-100">Download FundsAudit</a> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!--! ================================================================ !-->
-    <!--! [End]  Navigation Manu !-->
-    <!--! ================================================================ !-->
-    <!--! ================================================================ !-->
-    <!--! [Start] Header !-->
-    <!--! ================================================================ !-->
-    <header class="nxl-header">
-        <div class="header-wrapper">
-            <!--! [Start] Header Left !-->
-            <div class="header-left d-flex align-items-center gap-4">
-                <!--! [Start] nxl-head-mobile-toggler !-->
-                <a href="javascript:void(0);" class="nxl-head-mobile-toggler" id="mobile-collapse">
-                    <div class="hamburger hamburger--arrowturn">
-                        <div class="hamburger-box">
-                            <div class="hamburger-inner"></div>
-                        </div>
-                    </div>
-                </a>
-                <!--! [Start] nxl-head-mobile-toggler !-->
-                <!--! [Start] nxl-navigation-toggle !-->
-                <div class="nxl-navigation-toggle">
-                    <a href="javascript:void(0);" id="menu-mini-button">
-                        <i class="feather-align-left"></i>
-                    </a>
-                    <a href="javascript:void(0);" id="menu-expend-button" style="display: none">
-                        <i class="feather-arrow-right"></i>
-                    </a>
-                </div>
-                <!--! [End] nxl-navigation-toggle !-->
-                <!--! [Start] nxl-lavel-mega-menu-toggle !-->
-                <!-- <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
-                    <a href="javascript:void(0);" id="nxl-lavel-mega-menu-open">
-                        <i class="feather-align-left"></i>
-                    </a>
-                </div> -->
-                <!--! [End] nxl-lavel-mega-menu-toggle !-->
-                <!--! [Start] nxl-lavel-mega-menu !-->
-                <div class="nxl-drp-link nxl-lavel-mega-menu">
-                    <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
-                        <a href="javascript:void(0)" id="nxl-lavel-mega-menu-hide">
-                            <i class="feather-arrow-left me-2"></i>
-                            <span>Back</span>
-                        </a>
-                    </div>
-
-                    <!--! [End] nxl-lavel-mega-menu-wrapper !-->
-                </div>
-                <!--! [End] nxl-lavel-mega-menu !-->
-            </div>
-            <!--! [End] Header Left !-->
-            <!--! [Start] Header Right !-->
-            <div class="header-right ms-auto">
-                <div class="d-flex align-items-center">
-
-                    <!-- Full Screen Switcher -->
-                    <div class="nxl-h-item d-none d-sm-flex">
-                        <div class="full-screen-switcher">
-                            <a href="javascript:void(0);" class="nxl-head-link me-0"
-                                onclick="$('body').fullScreenHelper('toggle');">
-                                <i class="feather-maximize maximize"></i>
-                                <i class="feather-minimize minimize"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Dark/Light Theme Toggle -->
-                    <div class="nxl-h-item dark-light-theme">
-                        <a href="javascript:void(0);" class="nxl-head-link me-0 dark-button">
-                            <i class="feather-moon"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="nxl-head-link me-0 light-button" style="display: none">
-                            <i class="feather-sun"></i>
-                        </a>
-                    </div>
-
-                    <!-- Logout Button -->
-                    <div class="nxl-h-item">
-                        <a href="javascript:void(0);" class="nxl-head-link me-0" id="logout-button" title="Logout">
-                            <i class="feather-log-out"></i>
-                        </a>
-                    </div>
-
-                    <!-- User Dropdown -->
-                    <div class="dropdown nxl-h-item">
-                        <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"
-                            data-bs-auto-close="outside">
-                            <div class="avatar-text avatar-lg bg-gray-200">
-                                <i class="feather-user"></i>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
-                            <div class="dropdown-header">
-                                <section id="user-header">
-                                    <div id="user-section" class="user-dropdown">Fundsweb Admin</div>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--! [End] Header Right !-->
-        </div>
-    </header>
-    <!--! ================================================================ !-->
-    <!--! [End] Header !-->
-    <!--! ================================================================ !-->
-    <!--! ================================================================ !-->
     <!--! [Start] Main Content !-->
     <!--! ================================================================ !-->
-    <main class="nxl-container">
-        <div class="nxl-content">
-            <!-- [ page-header ] start -->
-            <div class="page-header">
-                <div class="page-header-left d-flex align-items-center">
-                    <div class="page-header-title">
-                        <h5 class="m-b-10">Dashboard</h5>
-                    </div>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item">Onboarding Details</li>
-                    </ul>
-                </div>
-
-            </div>
-            <!-- [ page-header ] end -->
-            <!-- [ Main Content ] start -->
-            <div class="main-content">
-                <div class="row">
-                    <!-- [Latest Leads] start -->
-                    <div class="col-12">
-                        <div class="card stretch stretch-full">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">Onboarding Details</h5>
-                                </div>
-                                <div class="card-header-action">
-                                    <!-- <div data-bs-toggle="tooltip" title="Delete">
-                                            <a href="javascript:void(0);" class="avatar-text avatar-xs bg-danger" data-bs-toggle="remove"> </a>
-                                        </div> -->
-                                    <div data-bs-toggle="tooltip" title="Refresh">
-                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
-                                            data-bs-toggle="refresh"> </a>
-                                    </div>
-                                    <div data-bs-toggle="tooltip" title="Maximize/Minimize">
-                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
-                                            data-bs-toggle="expand"> </a>
-                                    </div>
-                                    <div class="search-bar">
-                                        <input type="text" id="searchInput" class="form-control" placeholder="Search..."
-                                            oninput="filterTable()">
-                                    </div>
-                                </div>
+    <main class="auth-minimal-wrapper">
+        <div class="auth-minimal-inner">
+            <div class="minimal-card-wrapper">
+                <div class="card mb-4 mt-5 mx-4 mx-sm-0 position-relative">
+                    <!-- <div class="wd-50 bg-white p-2 rounded-circle shadow-lg position-absolute translate-middle top-0 start-50">
+                        <img src="./../assets/images/favicon.svg" alt="" class="img-fluid">
+                    </div> -->
+                    <div class="card-body p-sm-5">
+                        <h2 class="fs-20 fw-bolder mb-4">Welcome Admin</h2>
+                        <!-- <h4 class="fs-13 fw-bold mb-2">Login to your account</h4> -->
+                        <p class="fs-12 fw-medium text-muted">Login to your Admin account to get access to Dashboard.
+                        </p>
+                        <form id="loginForm" class="w-100 mt-4 pt-2">
+                            <div class="mb-4">
+                                <input type="email" id="email" class="form-control" placeholder="Email or Username"
+                                    required>
                             </div>
-                            <div class="card-body custom-card-action p-0">
-                                <div class="table-responsive">
-                                    <table class="table table-hover mb-0" id="leadsTable">
-                                        <thead>
-                                            <tr class="border-b">
-                                                <th scope="row">S No.</th>
-                                                <th>Name</th>
-                                                <th>Mobile No.</th>
-                                                <th>Email</th>
-                                                <th>Date of Payment</th>
-                                                <th>GST No.</th>
-                                                <th>Address</th>
-                                                <th>City</th>
-                                                <th>Status of Payment</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Rows will be dynamically populated here -->
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="mb-3">
+                                <input type="password" id="password" class="form-control" placeholder="Password"
+                                    required>
                             </div>
-                            <div class="card-footer">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
-                                        id="pagination">
-                                        <!-- Pagination links will be dynamically populated here -->
-                                    </ul>
-                                    <div class="d-flex gap-2">
-                                        <button class="btn btn-primary" onclick="printTable()">
-                                            <i class="bi bi-printer"></i> Print
-                                        </button>
-                                        <button class="btn btn-success" onclick="exportToExcel()">
-                                            <i class="bi bi-file-earmark-excel"></i> Excel
-                                        </button>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <div class="custom-control custom-checkbox">
+                                        <!-- Remember Me checkbox (optional) -->
                                     </div>
                                 </div>
+                                <!-- Forgot password link (optional) -->
+                            </div>
+                            <div class="mt-5">
+                                <button type="submit" class="btn btn-lg btn-primary w-100">Login</button>
+                            </div>
+                        </form>
+                        <!-- <div class="w-100 mt-5 text-center mx-auto">
+                            <div class="mb-4 border-bottom position-relative"><span class="small py-1 px-3 text-uppercase text-muted bg-white position-absolute translate-middle">or</span></div>
+                            <div class="d-flex align-items-center justify-content-center gap-2">
+                                <a href="javascript:void(0);" class="btn btn-light-brand flex-fill" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Login with Facebook">
+                                    <i class="feather-facebook"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-light-brand flex-fill" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Login with Twitter">
+                                    <i class="feather-twitter"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn btn-light-brand flex-fill" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Login with Github">
+                                    <i class="feather-github text"></i>
+                                </a>
                             </div>
                         </div>
+                        <div class="mt-5 text-muted">
+                            <span> Don't have an account?</span>
+                            <a href="auth-register-minimal.html" class="fw-bold">Create an Account</a>
+                        </div> -->
                     </div>
                 </div>
             </div>
-            <!-- [ Main Content ] end -->
         </div>
-        <!-- [ Footer ] start -->
-        <footer class="footer">
-            <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
-                <span>Copyright Fundsroom ©</span>
-                <script>
-                    document.write(new Date().getFullYear());
-                </script>
-            </p>
-            <div class="d-flex align-items-center gap-4">
-                <!-- <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
-					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Terms</a>
-					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a> -->
-            </div>
-        </footer>
-        <!-- [ Footer ] end -->
     </main>
     <!--! ================================================================ !-->
     <!--! [End] Main Content !-->
     <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Theme Customizer !-->
+    <!--! ================================================================ !-->
 
+    <!--! ================================================================ !-->
+    <!--! [End] Theme Customizer !-->
+    <!--! ================================================================ !-->
     <!--! ================================================================ !-->
     <!--! Footer Script !-->
     <!--! ================================================================ !-->
     <!--! BEGIN: Vendors JS !-->
     <script src="./../assets/vendors/js/vendors.min.js"></script>
     <!-- vendors.min.js {always must need to be top} -->
-    <script src="./../assets/vendors/js/daterangepicker.min.js"></script>
-    <script src="./../assets/vendors/js/apexcharts.min.js"></script>
-    <script src="./../assets/vendors/js/circle-progress.min.js"></script>
-    <script src="./../assets/vendors/js/jquery.calendar.min.js"></script>
     <!--! END: Vendors JS !-->
     <!--! BEGIN: Apps Init  !-->
     <script src="./../assets/js/common-init.min.js"></script>
-    <!-- <script src="./../assets/js/dashboard-init.min.js"></script> -->
-    <!-- <script src="./../assets/js/reports-project-init.min.js"></script> -->
-    <!-- <script src="./../assets/js/widgets-miscellaneous-init.min.js"></script> -->
     <!--! END: Apps Init !-->
     <!--! BEGIN: Theme Customizer  !-->
     <script src="./../assets/js/theme-customizer-init.min.js"></script>
     <!--! END: Theme Customizer !-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include SweetAlert2 (only if not already included) -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- SHA-256 library for HTTP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha256.min.js"></script>
 
     <script>
-        var admin = sessionStorage.getItem("admin");
-        console.log("Admin status:", admin);
+        function hash(input) {
+            const shaObj = new jsSHA("SHA-256", "TEXT");
+            shaObj.update(input);
+            return shaObj.getHash("HEX");
+        }
 
-        window.addEventListener('pageshow', function (event) {
-            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-                window.location.reload();
-            }
-        });
+        const correctEmailHash = "7b62af32db5e8a407f22ebe42c67b215cee09caf1cc5361d1474721369283123";
+        const correctPasswordHash = "04c19a3214e578663ecff2cadd780410e5c56b23cc761985b1b138b1859bb573";
 
-        window.onload = function () {
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
 
-            if (admin !== 'true') {
+            const enteredEmail = document.getElementById("email").value.trim().toLowerCase();
+            const enteredPassword = document.getElementById("password").value;
+
+            const emailHash = hash(enteredEmail);
+            const passwordHash = hash(enteredPassword);
+
+            if (emailHash === correctEmailHash && passwordHash === correctPasswordHash) {
+                sessionStorage.setItem("loggedIn", "true");
+
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Access Denied',
-                    text: 'You must be logged in as Admin to access this page.',
-                    confirmButtonText: 'Login',
-                    allowOutsideClick: false
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "/login.html";
-                    }
+                    title: 'Logging you in…',
+                    allowOutsideClick: false,
+                    didOpen: () => Swal.showLoading()
                 });
+
+                setTimeout(() => {
+                    Swal.close();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Successful!',
+                        text: 'Welcome back.',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+
+                    setTimeout(() => {
+                        window.location.href = "/templates/onboarding-details.html";
+                    }, 1000);
+                }, 1500);
+            } else {
+                Swal.fire({
+                    title: 'Logging you in…',
+                    allowOutsideClick: false,
+                    didOpen: () => Swal.showLoading()
+                });
+
+                setTimeout(() => {
+                    Swal.close();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed',
+                        text: 'Invalid email or password.',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                }, 1500);
             }
-        };
-
-        $(document).ready(function () {
-            const rowsPerPage = 10;
-            let currentPage = 1;
-            let tableData = [];
-
-            function fetchData() {
-                $.ajax({
-                    url: "https://api.fundsweb.in/api/v1/user/subscription-summaries",
-                    method: "GET",
-                    success: function (response) {
-                        if (response.success && Array.isArray(response.summaries)) {
-                            const reversedSummaries = response.summaries.reverse();
-                            // console.log("API Response:", reversedSummaries);
-
-                            tableData = reversedSummaries.map((item, index) => {
-                                const user = item.user || {};
-                                const registrant = item.domainRegistrant || {};
-                                const subscriptions = item.subscriptions || [];
-
-                                const name = user.name || `${registrant.firstName || ""} ${registrant.lastName || ""}`.trim();
-                                const email = user.email || registrant.email || "--";
-                                const phone = user.phoneNumber || "--";
-                                const city = registrant.city || "--";
-                                const gst = user.gstNumber || "--";
-                                const address = registrant.addressLine1 || "--";
-
-                                let paymentStatus = '<span class="badge bg-soft-primary text-primary">Pending</span>';
-                                let latestInvoiceDate = "--";
-
-                                const validSub = subscriptions.find(sub => sub.subscriptionStatus === "1" || sub.subscriptionStatus === "2");
-                                if (validSub) {
-                                    if (validSub.subscriptionStatus === "1") {
-                                        paymentStatus = '<span class="badge bg-soft-success text-success">Completed</span>';
-                                        latestInvoiceDate = validSub.createdAt ? validSub.createdAt.split("T")[0] : "--";
-                                    } else if (validSub.subscriptionStatus === "2") {
-                                        paymentStatus = '<span class="badge bg-soft-primary text-primary">Pending</span>';
-                                    }
-                                }
-
-                                return {
-                                    sno: index + 1,
-                                    name,
-                                    email,
-                                    phone,
-                                    latestInvoiceDate,
-                                    gst,
-                                    address,
-                                    city,
-                                    paymentStatus
-                                };
-                            });
-
-                            renderTable();
-                            renderPagination();
-                        } else {
-                            console.error("Invalid response format.");
-                        }
-                    },
-                    error: function (err) {
-                        console.error("Error fetching data:", err);
-                    }
-                });
-            }
-
-            function renderTable() {
-                const tbody = $("#leadsTable tbody");
-                tbody.empty();
-                const start = (currentPage - 1) * rowsPerPage;
-                const end = start + rowsPerPage;
-                const rows = tableData.slice(start, end);
-
-                rows.forEach((row) => {
-                    const tr = `<tr>
-                    <td>${row.sno}</td>
-                    <td>${row.name}</td>
-                    <td>${row.phone}</td>
-                    <td>${row.email}</td>
-                    <td>${row.latestInvoiceDate}</td>
-                    <td>${row.gst}</td>
-                    <td>${row.address}</td>
-                    <td>${row.city}</td>
-                    <td>${row.paymentStatus}</td>
-                </tr>`;
-                    tbody.append(tr);
-                });
-            }
-
-            function renderPagination() {
-                const totalPages = Math.ceil(tableData.length / rowsPerPage);
-                const pagination = $("#pagination");
-                pagination.empty();
-
-                const visiblePageCount = 3;
-                let startPage = Math.max(currentPage - 1, 1);
-                let endPage = startPage + visiblePageCount - 1;
-                if (endPage > totalPages) {
-                    endPage = totalPages;
-                    startPage = Math.max(endPage - visiblePageCount + 1, 1);
-                }
-
-                const prevDisabled = currentPage === 1 ? 'disabled' : '';
-                const nextDisabled = currentPage === totalPages ? 'disabled' : '';
-
-                pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage(${currentPage - 1})">&laquo;</a></li>`);
-
-                for (let i = startPage; i <= endPage; i++) {
-                    const active = i === currentPage ? "active" : "";
-                    pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage(${i})">${i}</a></li>`);
-                }
-
-                pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage(${currentPage + 1})">&raquo;</a></li>`);
-            }
-
-            window.changePage = function (page) {
-                const totalPages = Math.ceil(tableData.length / rowsPerPage);
-                if (page < 1 || page > totalPages) return;
-                currentPage = page;
-                renderTable();
-                renderPagination();
-            };
-
-            window.filterTable = function () {
-                const value = $("#searchInput").val().toLowerCase().trim();
-                if (!value) {
-                    renderTable();
-                    renderPagination();
-                    return;
-                }
-
-                const filtered = tableData.filter((row) =>
-                    Object.values(row).some((field) => {
-                        const plainText = $('<div>').html(field).text().toLowerCase().trim();
-                        return plainText === value;
-                    })
-                );
-
-                const tbody = $("#leadsTable tbody");
-                tbody.empty();
-                filtered.forEach((row, index) => {
-                    const tr = `<tr>
-                    <td>${index + 1}</td>
-                    <td>${row.name}</td>
-                    <td>${row.phone}</td>
-                    <td>${row.email}</td>
-                    <td>${row.latestInvoiceDate}</td>
-                    <td>${row.gst}</td>
-                    <td>${row.address}</td>
-                    <td>${row.city}</td>
-                    <td>${row.paymentStatus}</td>
-                </tr>`;
-                    tbody.append(tr);
-                });
-
-                $("#pagination").hide();
-            };
-
-            window.printTable = function () {
-                const printWindow = window.open('', '', 'height=600,width=800');
-                printWindow.document.write('<html><head><title>Print Table</title></head><body>');
-                printWindow.document.write($("#leadsTable")[0].outerHTML);
-                printWindow.document.write('</body></html>');
-                printWindow.document.close();
-                printWindow.print();
-            };
-
-            window.exportToExcel = function () {
-                const headers = [
-                    "S No.",
-                    "Name",
-                    "Mobile No.",
-                    "Email",
-                    "Date of Payment",
-                    "GST No.",
-                    "Address",
-                    "City",
-                    "Status of Payment"
-                ];
-
-                const data = [headers];
-
-                tableData.forEach((row, index) => {
-                    const clean = (html) => $('<div>').html(html).text().trim();
-                    data.push([
-                        index + 1,
-                        row.name,
-                        row.phone,
-                        row.email,
-                        row.latestInvoiceDate,
-                        row.gst,
-                        row.address,
-                        row.city,
-                        clean(row.paymentStatus)
-                    ]);
-                });
-
-                const worksheet = XLSX.utils.aoa_to_sheet(data);
-                const workbook = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(workbook, worksheet, "Onboarding");
-                XLSX.writeFile(workbook, "OnboardingDetails_All.xlsx");
-            };
-
-            fetchData();
         });
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const logoutLinks = [document.getElementById("logout-button")];
-
-            function deleteCookie(name) {
-                document.cookie = name + '=; Max-Age=0; path=/; domain=' + location.hostname;
-            }
-            function clearAllUserData() {
-                console.warn('Clearing ALL localStorage, sessionStorage, and cookies...');
-                localStorage.clear();
-                sessionStorage.clear();
-                deleteCookie('token');
-                console.warn('All user data cleared.');
-            }
-
-            logoutLinks.forEach(link => {
-                if (link) {
-                    link.addEventListener("click", function (event) {
-                        event.preventDefault(); // Prevent default link behavior
-
-                        Swal.fire({
-                            title: "Are you sure?",
-                            text: "You will be logged out!",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#05DAC3",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, logout"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                clearAllUserData();
-                                console.log("User data cleared on logout.");
-
-                                Swal.fire({
-                                    title: "Logged out!",
-                                    text: "You have been successfully logged out.",
-                                    icon: "success",
-                                    confirmButtonColor: "#05DAC3",
-                                    showConfirmButton: false
-                                });
-
-                                setTimeout(() => {
-                                    window.location.href = "/login.html";
-                                }, 1600);
-                            }
-                        });
-                    });
-                }
-            });
+        window.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
         });
+
+        let devAccessGranted = false;
+
+        window.addEventListener("keydown", function (e) {
+            const isCtrl = e.ctrlKey;
+            const isShift = e.shiftKey;
+            const isAlt = e.altKey;
+            const key = e.key.toLowerCase();
+
+            if (isCtrl && isAlt && isShift && key === "i") {
+                devAccessGranted = true;
+                alert("Developer access granted. Now you can open DevTools.");
+                return;
+            }
+
+            if (
+                !devAccessGranted &&
+                (
+                    e.keyCode === 123 ||
+                    (isCtrl && isShift && (key === "i" || key === "j")) ||
+                    (isCtrl && key === "u")
+                )
+            ) {
+                e.preventDefault();
+            }
+        }, true);
     </script>
 
 </body>

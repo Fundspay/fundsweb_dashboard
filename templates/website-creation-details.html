@@ -10,7 +10,7 @@
     <meta name="author" content="WRAPCODERS" />
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Fundsroom || Dashboard</title>
+    <title>Fundsweb || Dashboard</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="./../assets/images/FundsAuditLogo.png" />
@@ -42,7 +42,7 @@
         <div class="navbar-wrapper">
             <div class="m-header">
                 <a href="index.html" class="b-brand">
-                    <img src="/assets/img/logo/Fundsweb1.png" alt="" class="logo logo-lg" />
+                    <img src="/assets/images/Fundsweb1.png" alt="" class="logo logo-lg" />
                     <img src="./../assets/images/FundsAuditLogo.png" alt="" class="logo logo-sm" />
                 </a>
             </div>
@@ -58,7 +58,7 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="index.html">Onboarding Details</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="onboarding-details.html">Onboarding Details</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="payment-details.html">Payment Details</a>
                             </li>
                             <li class="nxl-item"><a class="nxl-link" href="website-creation-details.html">Website
@@ -67,13 +67,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nxl-item nxl-hasmenu">
+                    <!-- <li class="nxl-item nxl-hasmenu">
                         <a href="/admin/my-websites.html" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-user"></i></span>
                             <span class="nxl-mtext">My-websites</span><span class="nxl-arrow"><i
                                     class="feather-chevron-right"></i></span>
                         </a>
-                    </li>
+                    </li> -->
                     <!-- Admin Page Link (Hidden by Default) -->
                     <!-- <li class="nxl-item nxl-hasmenu" id="adminPageLink" style="display: none;">
                         <a href="javascript:void(0);" class="nxl-link">
@@ -345,9 +345,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        var admin = sessionStorage.getItem("admin");
-        console.log("Admin status:", admin);
-
         window.addEventListener('pageshow', function (event) {
             if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
                 window.location.reload();
@@ -355,17 +352,18 @@
         });
 
         window.onload = function () {
+            const loggedIn = sessionStorage.getItem("loggedIn");
 
-            if (admin !== 'true') {
+            if (loggedIn !== "true") {
                 Swal.fire({
                     icon: 'error',
                     title: 'Access Denied',
-                    text: 'You must be logged in as Admin to access this page.',
+                    text: 'You must be logged in to access this page.',
                     confirmButtonText: 'Login',
                     allowOutsideClick: false
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "/login.html";
+                        window.location.href = "index.html";
                     }
                 });
             }
@@ -624,7 +622,7 @@
                                 });
 
                                 setTimeout(() => {
-                                    window.location.href = "/login.html";
+                                    window.location.href = "/templates/index.html";
                                 }, 1600);
                             }
                         });
@@ -632,6 +630,38 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        window.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
+        let devAccessGranted = false;
+
+        window.addEventListener("keydown", function (e) {
+            const isCtrl = e.ctrlKey;
+            const isShift = e.shiftKey;
+            const isAlt = e.altKey;
+            const key = e.key.toLowerCase();
+
+            if (isCtrl && isAlt && isShift && key === "i") {
+                devAccessGranted = true;
+                alert("Developer access granted. Now you can open DevTools.");
+                return;
+            }
+
+            if (
+                !devAccessGranted &&
+                (
+                    e.keyCode === 123 ||
+                    (isCtrl && isShift && (key === "i" || key === "j")) ||
+                    (isCtrl && key === "u")
+                )
+            ) {
+                e.preventDefault();
+            }
+        }, true);
     </script>
 
 </body>
