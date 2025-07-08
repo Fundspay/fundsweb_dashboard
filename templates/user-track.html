@@ -266,6 +266,7 @@
                                                 <th>Name</th>
                                                 <th>Mobile No.</th>
                                                 <th>Email</th>
+                                                <th>Referred By</th>
                                                 <th>Registartion Status</th>
                                                 <th>Login Status</th>
                                                 <th>Subscription Status</th>
@@ -404,6 +405,7 @@
                                 const name = user.name || "--";
                                 const email = user.email || "--";
                                 const phone = user.phoneNumber || "--";
+                                const referredBy = user.referredBy || "--";
 
                                 const domainStatus = domains.length > 0
                                     ? '<span class="badge bg-soft-success text-success">Registered</span>'
@@ -444,6 +446,7 @@
                                     name,
                                     phone,
                                     email,
+                                    referredBy,
                                     registrationStatus: '<span class="badge bg-soft-success text-success">Done</span>',
                                     loginStatus: '<span class="badge bg-soft-success text-success">Done</span>',
                                     subscriptionStatus,
@@ -481,6 +484,7 @@
                     <td>${row.name}</td>
                     <td>${row.phone}</td>
                     <td>${row.email}</td>
+                    <td>${row.referredBy}</td>
                     <td>${row.registrationStatus}</td>
                     <td>${row.loginStatus}</td>
                     <td>${row.subscriptionStatus}</td>
@@ -552,6 +556,7 @@
                     <td>${row.name}</td>
                     <td>${row.phone}</td>
                     <td>${row.email}</td>
+                    <td>${row.referredBy}</td>
                     <td>${row.registrationStatus}</td>
                     <td>${row.loginStatus}</td>
                     <td>${row.subscriptionStatus}</td>
@@ -583,6 +588,7 @@
                     "Name",
                     "Mobile No.",
                     "Email",
+                    "Referred By",
                     "Registration Status",
                     "Login Status",
                     "Subscription Status",
@@ -603,6 +609,7 @@
                         row.name,
                         row.phone,
                         row.email,
+                        clean(row.referredBy),
                         clean(row.registrationStatus),
                         clean(row.loginStatus),
                         clean(row.subscriptionStatus),
