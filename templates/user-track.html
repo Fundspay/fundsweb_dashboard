@@ -58,7 +58,8 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="onboarding-details.html">Onboarding Details</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="onboarding-details.html">Onboarding
+                                    Details</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="payment-details.html">Payment Details</a>
                             </li>
                             <li class="nxl-item"><a class="nxl-link" href="website-creation-details.html">Website
@@ -267,12 +268,14 @@
                                                 <th>Mobile No.</th>
                                                 <th>Email</th>
                                                 <th>Referred By</th>
+                                                <th>Team leader allotted</th>
                                                 <th>Registartion Status</th>
                                                 <th>Login Status</th>
                                                 <th>Subscription Status</th>
                                                 <th>Subscription Date</th>
                                                 <th>Domain Registartion Status</th>
                                                 <th>Domain url</th>
+                                                <th>Mail Confirmation</th>
                                                 <th>Request SSL Status</th>
                                                 <th>Apply SSL Status</th>
                                                 <th>Website Live Status</th>
@@ -358,7 +361,6 @@
 
         window.onload = function () {
             const loggedIn = sessionStorage.getItem("loggedIn");
-
             if (loggedIn !== "true") {
                 Swal.fire({
                     icon: 'error',
@@ -367,9 +369,7 @@
                     confirmButtonText: 'Login',
                     allowOutsideClick: false
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "index.html";
-                    }
+                    if (result.isConfirmed) window.location.href = "index.html";
                 });
             }
         };
@@ -379,253 +379,236 @@
             let currentPage = 1;
             let tableData = [];
 
-            function formatDate(dateStr) {
-                if (!dateStr) return "--";
-                const d = new Date(dateStr);
-                const day = String(d.getDate()).padStart(2, '0');
-                const month = String(d.getMonth() + 1).padStart(2, '0');
-                const year = d.getFullYear();
-                return `${day}-${month}-${year}`;
-            }
+            const formatDate = (str) => {
+                if (!str) return "--";
+                const d = new Date(str);
+                return `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
+            };
 
-            function fetchData() { 
+            function fetchData() {
                 $.ajax({
                     url: "https://api.fundsweb.in/api/v1/user/subscription-summaries",
                     method: "GET",
-                    success: function (response) {
-                        if (response.success && Array.isArray(response.summaries)) {
-                            const reversed = response.summaries.reverse();
-                            // console.log("API Response:", reversed);
-
-                            tableData = reversed.map((item, index) => {
-                                const user = item.user || {};
-                                const domains = item.domains || [];
-                                const subscriptions = item.subscriptions || [];
-
-                                const name = user.name || "--";
-                                const email = user.email || "--";
-                                const phone = user.phoneNumber || "--";
-                                const referredBy = user.referredBy || "--";
-
-                                const domainStatus = domains.length > 0
-                                    ? '<span class="badge bg-soft-success text-success">Registered</span>'
-                                    : '<span class="badge bg-soft-danger text-danger">Not Registered</span>';
-
-                                let domainUrl = "--";
-                                if (domains.length > 0 && domains[0].name) {
-                                    const url = `https://${domains[0].name}`;
-                                    domainUrl = `<a href="${url}" target="_blank">${url}</a>`;
-                                }
-
-                                const requestSSL = domains.length > 0 && domains[0].certArn
-                                    ? '<span class="badge bg-soft-success text-success">Requested</span>'
-                                    : '<span class="badge bg-soft-danger text-danger">Not Requested</span>';
-
-                                const applySSL = domains.length > 0 && domains[0].cloudFrontDomain
-                                    ? '<span class="badge bg-soft-success text-success">Applied</span>'
-                                    : '<span class="badge bg-soft-danger text-danger">Not Applied</span>';
-
-                                const websiteLive = domains.length > 0 && domains[0].cloudFrontDomain
-                                    ? '<span class="badge bg-soft-success text-success">Live</span>'
-                                    : '<span class="badge bg-soft-danger text-danger">Not Live</span>';
-
-                                let subscriptionStatus = '<span class="badge bg-soft-danger text-danger">Unpaid</span>';
-                                let subscriptionDate = "--";
-                                if (Array.isArray(subscriptions) && subscriptions.length > 0 && subscriptions[0]) {
-                                    const sub = subscriptions[0];
-                                    if (sub.subscriptionStatus == "1") {
-                                        subscriptionStatus = '<span class="badge bg-soft-success text-success">Paid</span>';
-                                        subscriptionDate = formatDate(sub.createdAt);
-                                    } else if (sub.subscriptionStatus == "2") {
-                                        subscriptionStatus = '<span class="badge bg-soft-danger text-danger">Unpaid</span>';
-                                    }
-                                }
-
-                                return {
-                                    sno: index + 1,
-                                    name,
-                                    phone,
-                                    email,
-                                    referredBy,
-                                    registrationStatus: '<span class="badge bg-soft-success text-success">Done</span>',
-                                    loginStatus: '<span class="badge bg-soft-success text-success">Done</span>',
-                                    subscriptionStatus,
-                                    subscriptionDate,
-                                    domainStatus,
-                                    domainUrl,
-                                    requestSSL,
-                                    applySSL,
-                                    websiteLive
-                                };
-                            });
-
-                            renderTable();
-                            renderPagination();
-                        } else {
-                            console.error("Invalid response format.");
+                    success: ({ success, summaries }) => {
+                        if (!success || !Array.isArray(summaries)) {
+                            console.error("Invalid response");
+                            return;
                         }
+
+                        tableData = summaries.reverse().map((item, i) => {
+                            const user = item.user || {};
+                            const domains = item.domains || [];
+                            const subscriptions = item.subscriptions || [];
+
+                            const domainUrlTxt = domains.length && domains[0].name ? `https://${domains[0].name}` : null;
+                            const domainUrl = domainUrlTxt ? `<a href="${domainUrlTxt}" target="_blank">${domainUrlTxt}</a>` : "--";
+
+                            return {
+                                sno: i + 1,
+                                userId: user.id || null,
+                                name: user.name || "--",
+                                phone: user.phoneNumber || "--",
+                                email: user.email || "--",
+                                referredBy: user.referredBy || "--",
+                                teamLeader: user.teamLeader || item.teamLeader || "",
+                                mailConfirmed: user.mailConfirmed === "Yes" ? "Yes" : "No",
+                                registrationStatus: '<span class="badge bg-soft-success text-success">Done</span>',
+                                loginStatus: '<span class="badge bg-soft-success text-success">Done</span>',
+                                subscriptionStatus: subscriptions[0]?.subscriptionStatus == "1"
+                                    ? '<span class="badge bg-soft-success text-success">Paid</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Unpaid</span>',
+                                subscriptionDate: subscriptions[0]?.createdAt ? formatDate(subscriptions[0].createdAt) : "--",
+                                domainStatus: domainUrlTxt
+                                    ? '<span class="badge bg-soft-success text-success">Registered</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Not Registered</span>',
+                                domainUrlTxt,
+                                domainUrl,
+                                requestSSL: domains[0]?.certArn
+                                    ? '<span class="badge bg-soft-success text-success">Requested</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Not Requested</span>',
+                                applySSL: domains[0]?.cloudFrontDomain
+                                    ? '<span class="badge bg-soft-success text-success">Applied</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Not Applied</span>',
+                                websiteLive: domains[0]?.cloudFrontDomain
+                                    ? '<span class="badge bg-soft-success text-success">Live</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Not Live</span>'
+                            };
+                        });
+
+                        renderTable(tableData.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage));
+                        renderPagination();
                     },
-                    error: function (err) {
-                        console.error("Error fetching data:", err);
+                    error: (err) => console.error("Fetch error:", err)
+                });
+            }
+
+            function renderTable(data) {
+                const tbody = $("#leadsTable tbody").empty();
+                data.forEach(row => {
+                    const disabled = row.domainUrlTxt ? "" : "disabled";
+                    tbody.append(`
+                    <tr>
+                        <td>${row.sno}</td>
+                        <td>${row.name}</td>
+                        <td>${row.phone}</td>
+                        <td>${row.email}</td>
+                        <td>${row.referredBy}</td>
+                        <td>
+                            <input type="text" class="form-control team-leader-input"
+                                   data-user-id="${row.userId}"
+                                   value="${row.teamLeader}"
+                                   placeholder="Enter name"
+                                   style="min-width:150px;">
+                        </td>
+                        <td>${row.registrationStatus}</td>
+                        <td>${row.loginStatus}</td>
+                        <td>${row.subscriptionStatus}</td>
+                        <td>${row.subscriptionDate}</td>
+                        <td>${row.domainStatus}</td>
+                        <td>${row.domainUrl}</td>
+                        <td>
+                            <select class="form-control mail-confirm-dropdown"
+                                    data-user-id="${row.userId}"
+                                    ${disabled}
+                                    style="min-width:100px;">
+                                <option value="No" ${row.mailConfirmed === "No" ? "selected" : ""}>No</option>
+                                <option value="Yes" ${row.mailConfirmed === "Yes" ? "selected" : ""}>Yes</option>
+                            </select>
+                        </td>
+                        <td>${row.requestSSL}</td>
+                        <td>${row.applySSL}</td>
+                        <td>${row.websiteLive}</td>
+                    </tr>
+                `);
+                });
+
+                bindDynamicEvents();
+            }
+
+            function bindDynamicEvents() {
+                $(".team-leader-input").off("keydown").on("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        const $el = $(this);
+                        const name = $el.val().trim();
+                        const id = $el.data("user-id");
+                        if (id && name) assignTeamLeader(id, name, $el);
+                    }
+                });
+
+                $(".mail-confirm-dropdown").off("change").on("change", function () {
+                    const $el = $(this);
+                    const uid = $el.data("user-id");
+                    const status = $el.val();
+                    if (uid) updateMailConfirmation(uid, status, $el);
+                });
+            }
+
+            function assignTeamLeader(userId, name, $input) {
+                $.ajax({
+                    url: "https://api.fundsweb.in/api/v1/user/assign-team-leader",
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify({ user_id: userId, team_leader: name }),
+                    success: () => {
+                        Swal.fire({ icon: "success", title: "Saved", text: `Assigned ${name}`, timer: 2000, showConfirmButton: false });
+                        $input.css("border", "2px solid green");
+                    },
+                    error: () => {
+                        Swal.fire({ icon: "error", title: "Failed", text: "Could not assign team leader" });
+                        $input.css("border", "2px solid red");
                     }
                 });
             }
 
-            function renderTable() {
-                const tbody = $("#leadsTable tbody");
-                tbody.empty();
-                const start = (currentPage - 1) * rowsPerPage;
-                const end = start + rowsPerPage;
-                const rows = tableData.slice(start, end);
-
-                rows.forEach((row) => {
-                    const tr = `<tr>
-                    <td>${row.sno}</td>
-                    <td>${row.name}</td>
-                    <td>${row.phone}</td>
-                    <td>${row.email}</td>
-                    <td>${row.referredBy}</td>
-                    <td>${row.registrationStatus}</td>
-                    <td>${row.loginStatus}</td>
-                    <td>${row.subscriptionStatus}</td>
-                    <td>${row.subscriptionDate}</td>
-                    <td>${row.domainStatus}</td>
-                    <td>${row.domainUrl}</td>
-                    <td>${row.requestSSL}</td>
-                    <td>${row.applySSL}</td>
-                    <td>${row.websiteLive}</td>
-                </tr>`;
-                    tbody.append(tr);
+            function updateMailConfirmation(userId, status, $select) {
+                $.ajax({
+                    url: "https://api.fundsweb.in/api/v1/user/mail-confirmation",
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify({ user_id: userId, mail_confirmation: status }),
+                    success: () => {
+                        Swal.fire({ icon: "success", title: "Updated", text: `Mail confirmation set to ${status}`, timer: 1500, showConfirmButton: false });
+                        $select.css("border", "2px solid green");
+                    },
+                    error: () => {
+                        Swal.fire({ icon: "error", title: "Failed", text: "Could not update mail confirmation" });
+                        $select.css("border", "2px solid red");
+                    }
                 });
             }
 
             function renderPagination() {
                 const totalPages = Math.ceil(tableData.length / rowsPerPage);
-                const pagination = $("#pagination");
-                pagination.empty();
+                const pag = $("#pagination").empty();
+                const prevDis = currentPage === 1 ? 'disabled' : '';
+                const nextDis = currentPage === totalPages ? 'disabled' : '';
 
-                const visiblePages = 3;
-                let startPage = Math.max(currentPage - 1, 1);
-                let endPage = startPage + visiblePages - 1;
-                if (endPage > totalPages) {
-                    endPage = totalPages;
-                    startPage = Math.max(endPage - visiblePages + 1, 1);
-                }
+                pag.append(`<li><a class="${prevDis}" href="javascript:void(0);" onclick="changePage(${currentPage - 1})">&laquo;</a></li>`);
 
-                const prevDisabled = currentPage === 1 ? 'disabled' : '';
-                const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+                const visible = 3;
+                let s = Math.max(currentPage - 1, 1);
+                let e = Math.min(s + visible - 1, totalPages);
+                if (e - s < visible - 1) s = Math.max(e - visible + 1, 1);
 
-                pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage(${currentPage - 1})">&laquo;</a></li>`);
-
-                for (let i = startPage; i <= endPage; i++) {
+                for (let i = s; i <= e; i++) {
                     const active = i === currentPage ? "active" : "";
-                    pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage(${i})">${i}</a></li>`);
+                    pag.append(`<li><a class="${active}" href="javascript:void(0);" onclick="changePage(${i})">${i}</a></li>`);
                 }
 
-                pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage(${currentPage + 1})">&raquo;</a></li>`);
+                pag.append(`<li><a class="${nextDis}" href="javascript:void(0);" onclick="changePage(${currentPage + 1})">&raquo;</a></li>`);
             }
 
-            window.changePage = function (page) {
-                const totalPages = Math.ceil(tableData.length / rowsPerPage);
-                if (page < 1 || page > totalPages) return;
-                currentPage = page;
-                renderTable();
+            window.changePage = (p) => {
+                const max = Math.ceil(tableData.length / rowsPerPage);
+                if (p < 1 || p > max) return;
+                currentPage = p;
+                renderTable(tableData.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage));
                 renderPagination();
             };
 
             window.filterTable = function () {
-                const value = $("#searchInput").val().toLowerCase().trim();
-                if (!value) {
-                    renderTable();
+                const val = $("#searchInput").val().toLowerCase().trim();
+
+                if (!val) {
+                    renderTable(tableData.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage));
                     renderPagination();
                     return;
                 }
 
-                const filtered = tableData.filter((row) =>
-                    Object.values(row).some((field) => {
-                        const plainText = $('<div>').html(field).text().toLowerCase().trim();
-                        return plainText === value;
-                    })
+                const filtered = tableData.filter(row =>
+                    Object.values(row).some(f => $('<div>').html(f).text().toLowerCase().trim() === val)
                 );
 
-                const tbody = $("#leadsTable tbody");
-                tbody.empty();
-                filtered.forEach((row, index) => {
-                    const tr = `<tr>
-                    <td>${index + 1}</td>
-                    <td>${row.name}</td>
-                    <td>${row.phone}</td>
-                    <td>${row.email}</td>
-                    <td>${row.referredBy}</td>
-                    <td>${row.registrationStatus}</td>
-                    <td>${row.loginStatus}</td>
-                    <td>${row.subscriptionStatus}</td>
-                    <td>${row.subscriptionDate}</td>
-                    <td>${row.domainStatus}</td>
-                    <td>${row.domainUrl}</td>
-                    <td>${row.requestSSL}</td>
-                    <td>${row.applySSL}</td>
-                    <td>${row.websiteLive}</td>
-                </tr>`;
-                    tbody.append(tr);
-                });
-
+                renderTable(filtered); // This also binds events
                 $("#pagination").hide();
             };
 
-            window.printTable = function () {
-                const printWindow = window.open('', '', 'height=600,width=800');
-                printWindow.document.write('<html><head><title>Print Table</title></head><body>');
-                printWindow.document.write($("#leadsTable")[0].outerHTML);
-                printWindow.document.write('</body></html>');
-                printWindow.document.close();
-                printWindow.print();
+            window.printTable = () => {
+                const w = window.open('', '', 'height=600,width=800');
+                w.document.write('<html><head><title>Print Table</title></head><body>');
+                w.document.write($("#leadsTable")[0].outerHTML);
+                w.document.write('</body></html>');
+                w.document.close(); w.print();
             };
 
-            window.exportToExcel = function () {
-                const headers = [
-                    "S No.",
-                    "Name",
-                    "Mobile No.",
-                    "Email",
-                    "Referred By",
-                    "Registration Status",
-                    "Login Status",
-                    "Subscription Status",
-                    "Subscription Date",
-                    "Domain Registration Status",
-                    "Domain URL",
-                    "Request SSL Status",
-                    "Apply SSL Status",
-                    "Website Live Status"
-                ];
-
+            window.exportToExcel = () => {
+                const headers = ["S No.", "Name", "Mobile No.", "Email", "Referred By", "Team Leader Allotted", "Registration Status", "Login Status", "Subscription Status", "Subscription Date", "Domain Registration Status", "Domain URL", "Mail Confirmation", "Request SSL Status", "Apply SSL Status", "Website Live Status"];
                 const data = [headers];
 
-                tableData.forEach((row, index) => {
-                    const clean = (html) => $('<div>').html(html).text().trim();
+                tableData.forEach((r, i) => {
+                    const clean = h => $('<div>').html(h).text().trim();
                     data.push([
-                        index + 1,
-                        row.name,
-                        row.phone,
-                        row.email,
-                        clean(row.referredBy),
-                        clean(row.registrationStatus),
-                        clean(row.loginStatus),
-                        clean(row.subscriptionStatus),
-                        row.subscriptionDate,
-                        clean(row.domainStatus),
-                        clean(row.domainUrl),
-                        clean(row.requestSSL),
-                        clean(row.applySSL),
-                        clean(row.websiteLive)
+                        i + 1, r.name, r.phone, r.email, clean(r.referredBy), r.teamLeader,
+                        clean(r.registrationStatus), clean(r.loginStatus), clean(r.subscriptionStatus),
+                        r.subscriptionDate, clean(r.domainStatus), r.domainUrlTxt || "--", r.mailConfirmed,
+                        clean(r.requestSSL), clean(r.applySSL), clean(r.websiteLive)
                     ]);
                 });
 
-                const worksheet = XLSX.utils.aoa_to_sheet(data);
-                const workbook = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(workbook, worksheet, "User Status tracking");
-                XLSX.writeFile(workbook, "userStatus.xlsx");
+                const ws = XLSX.utils.aoa_to_sheet(data);
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, "User Status tracking");
+                XLSX.writeFile(wb, "userStatus.xlsx");
             };
 
             fetchData();
