@@ -522,7 +522,7 @@
 
             function updateMailConfirmation(userId, status, $select) {
                 $.ajax({
-                    url: "https://api.fundsweb.in/api/v1/user/mail-confirmation",
+                    url: "https://api.fundsweb.in/api/v1/test/confirmation-status",
                     method: "PUT",
                     contentType: "application/json",
                     data: JSON.stringify({ user_id: userId, mail_confirmation: status }),
